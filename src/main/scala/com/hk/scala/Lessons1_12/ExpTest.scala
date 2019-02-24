@@ -16,4 +16,7 @@ object ExpTest {
       }
     }
   }
+  def hello: Unit ={
+    throw new IOException("hello")
+  }
 }
