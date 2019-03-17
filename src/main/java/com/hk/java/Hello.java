@@ -1,6 +1,6 @@
 package com.hk.java;
 
-import com.hk.scala.Lessons1_17.Student;
+import com.hk.scala.Lessons.Lessons1_17.Student;
 
 public class Hello {
     public static void main(String[] args) {

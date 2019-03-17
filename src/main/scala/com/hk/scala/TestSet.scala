@@ -5,5 +5,6 @@ object TestSet {
     val s=scala.collection.mutable.SortedSet("orage","apple","banana");
     s+="grepe";
     s.foreach(println(_));
+    printf(s.isInstanceOf[AnyRef]+"");
   }
 }
