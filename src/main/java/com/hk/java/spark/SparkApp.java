@@ -18,9 +18,12 @@ public final class SparkApp {
     private static final Pattern SPACE = Pattern.compile(" ");
 
     public static void main(String[] args) throws Exception {
-        String input="hdfs://n1:8020/home/wordcount/input";
+        //String input="hdfs://n1:8020/home/wordcount/input";
 
-        SparkConf sparkConf = new SparkConf().setAppName("JavaWordCount");
+        String input ="D:\\BigData\\wordCount.txt";
+
+        SparkConf sparkConf = new SparkConf().setAppName("JavaWordCount")
+                .setMaster("local");
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
 
         //读取数据
@@ -30,7 +33,12 @@ public final class SparkApp {
         //和1组合
         JavaPairRDD<String, Integer> jprdd = jrdd2.mapToPair(t -> new Tuple2<String, Integer>(t, 1));
         //分组聚合
-        JavaPairRDD<String, Integer> res = jprdd.reduceByKey((a, b) -> a + b);
+        JavaPairRDD<String, Integer> counts = jprdd.reduceByKey((a, b) -> a + b);
+
+        List<Tuple2<String, Integer>> output = counts.collect();
+        for (Tuple2<?,?> tuple : output) {
+            System.out.println(tuple._1() + ": " + tuple._2());
+        }
 
         ctx.stop();
     }
