@@ -10,6 +10,8 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <spark.version>2.3.0</spark.version>
     <scala.version>2.11</scala.version>
+    <scala.compat.version>2.11</scala.compat.version>
+    <akka.version>2.4.17</akka.version>
   </properties>
 
   <repositories>
@@ -34,6 +36,18 @@
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_${scala.version}</artifactId>
       <version>${spark.version}</version>
+    </dependency>
+    <!-- 添加akka的actor依赖 -->
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-actor_${scala.compat.version}</artifactId>
+      <version>${akka.version}</version>
+    </dependency>
+    <!-- 多进程之间的Actor通信 -->
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-remote_${scala.compat.version}</artifactId>
+      <version>${akka.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
