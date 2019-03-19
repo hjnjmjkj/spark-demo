@@ -1,4 +1,4 @@
-package com.hk.java.spark;
+package com.hk.java.spark.Lessons1_4;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -39,6 +39,7 @@ public final class SparkApp {
         for (Tuple2<?,?> tuple : output) {
             System.out.println(tuple._1() + ": " + tuple._2());
         }
+        counts.saveAsObjectFile("D:\\BigData\\wordCount.obj");
 
         ctx.stop();
     }
