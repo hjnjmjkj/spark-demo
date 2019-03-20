@@ -19,6 +19,7 @@ public final class SparkApp {
 
     public static void main(String[] args) throws Exception {
         //String input="hdfs://n1:8020/home/wordcount/input";
+        System.setProperty("hadoop.home.dir", "D:\\BigData\\hadoop");
 
         String input ="D:\\BigData\\wordCount.txt";
 
@@ -35,11 +36,11 @@ public final class SparkApp {
         //分组聚合
         JavaPairRDD<String, Integer> counts = jprdd.reduceByKey((a, b) -> a + b);
 
-        List<Tuple2<String, Integer>> output = counts.collect();
+        /*List<Tuple2<String, Integer>> output = counts.collect();
         for (Tuple2<?,?> tuple : output) {
             System.out.println(tuple._1() + ": " + tuple._2());
-        }
-        counts.saveAsObjectFile("D:\\BigData\\wordCount.obj");
+        }*/
+        counts.saveAsTextFile("D:\\BigData\\wordCount2.txt");
 
         ctx.stop();
     }
