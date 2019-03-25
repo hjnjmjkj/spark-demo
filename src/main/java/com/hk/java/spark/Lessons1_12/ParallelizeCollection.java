@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ParallelizeCollection {
     public static void main(String[] args) {
+        System.setProperty("hadoop.home.dir", "D:\\BigData\\hadoop");
         //创建SparkConf
         SparkConf conf = new SparkConf()
                 .setAppName("ParallelizeCollection")
@@ -21,8 +22,10 @@ public class ParallelizeCollection {
         List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
 
         JavaRDD<Integer> numberRDD = sc.parallelize(numbers);
-
+        JavaRDD<Integer> numberFiterRDD = numberRDD.filter(a->a%2==0);
+        numberFiterRDD.foreach(num->System.out.println(num));
         int num = numberRDD.reduce((a, b) -> a + b);
+
 
         System.out.println(num);
 
